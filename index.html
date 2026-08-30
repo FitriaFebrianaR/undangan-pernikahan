@@ -456,6 +456,16 @@ a{text-decoration:none;}
   height: 100%;
   z-index: 0;
 }
+.tutup2 {
+  padding:5rem 1rem;
+  background-color: rgba(71, 8, 8, 0.7);
+  position: relative;
+  /* top: 0;
+  left: 0; */
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
 
 .left, .right {
   position: relative;
@@ -610,6 +620,33 @@ a{text-decoration:none;}
     font-size: 0.9rem;
   }
 }
+
+
+/* rekening */
+#hadiah{
+  background:url('aset/bg-flowers.jpg') center/cover no-repeat; 
+  color:var(--ivory); 
+  text-align:center;
+}
+.gift-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,164,100,.35);
+  border-radius:10px; padding:1.6rem; height:100%;
+}
+.gift-bank{font-family:var(--font-display); font-size:1.1rem; color:var(--gold);font-weight: bold;}
+.gift-num{
+  font-size:1.15rem; letter-spacing:.06em; margin:.4rem 0;
+  font-weight:500;
+}
+.gift-owner{ color:var(--broken-white);}
+.btn-copy{
+  border:1px solid var(--gold); color:var(--gold-light); background:transparent;
+  border-radius:30px; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:.4rem 1.1rem; margin-top:.7rem; transition:.3s;
+}
+.btn-copy:hover{background:var(--gold); color:var(--pink-deep);}
+.btn-copy.copied{background:var(--gold-light); color:var(--pink-soft); border-color:var(--gold-light);}
+
 
 /* closing */
 #closing{
@@ -914,6 +951,36 @@ a{text-decoration:none;}
   </div>
 </section>
 
+<section id="hadiah">
+    <div class="tutup2">
+      <p class="eyebrow on-dark reveal" style="font-weight:800">Tanda Kasih</p>
+      <h2 class="reveal" style="font-family:var(--font-display); font-style:italic; font-size:2rem; color:var(--broken-white);">Wedding Gift</h2>
+      <p class="reveal mx-auto" style="max-width:520px; font-size:.9rem; color:var(--broken-white); margin-top:.6rem;">
+        Kehadiran Anda adalah hadiah terindah bagi kami. Namun jika ingin memberi tanda kasih,
+        kami sediakan pilihan berikut dengan penuh syukur.
+      </p>
+      <div class="row g-3 justify-content-center mt-4">
+        <div class="col-10 col-md-4">
+          <div class="gift-card reveal">
+            <div class="gift-bank">Bank Rakyat Indonesia (BRI)</div>
+            <div class="gift-num" id="acc-bca">041201131132509</div>
+            <div class="gift-owner">a.n. Fabian Maulana</div>
+            <button class="btn-copy" data-copy="acc-bca">Salin Nomor</button>
+          </div>
+        </div>
+        <div class="col-10 col-md-4">
+          <div class="gift-card reveal">
+            <div class="gift-bank">Bank Negara Indonesia (BNI)</div>
+            <div class="gift-num" id="acc-mdr">1811695186</div>
+            <div class="gift-owner">a.n. Fitria Febriana Rahman</div>
+            <button class="btn-copy" data-copy="acc-mdr">Salin Nomor</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 <!-- closing -->
 <section id="closing" class="section-pad">
     <div class="container" data-aos="fade-up">
@@ -1008,6 +1075,19 @@ musicBtn.addEventListener("click", () => {
     music.pause();
     musicBtn.classList.remove("spin");
   }
+});
+
+/* ============ Copy nomor rekening ============ */
+document.querySelectorAll(".btn-copy").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const target = document.getElementById(btn.dataset.copy);
+    navigator.clipboard.writeText(target.textContent.replace(/\s/g,"")).then(()=>{
+      const original = btn.textContent;
+      btn.textContent = "Tersalin!";
+      btn.classList.add("copied");
+      setTimeout(()=>{ btn.textContent = original; btn.classList.remove("copied"); }, 1800);
+    });
+  });
 });
 
 /* ============ Countdown ============ */
